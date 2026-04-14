@@ -77,16 +77,20 @@
 
 <script>
     // Dirección exacta configurada
-    const direccionDestino = "Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.";
+    const direccionDestino = "Centro Cristiano Calacoaya";
     const destinoURL = encodeURIComponent(direccionDestino);
 
     function lanzarUber() {
-        // Enlace universal de Uber (Funciona en iOS y Android)
-        // pickup=my_location obliga a usar el GPS del dispositivo
         const uberURL = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
         
-        // En iPhone (iOS), esto abrirá la app si está instalada o el navegador si no.
-        window.location.href = uberURL;
+        // Abrimos el enlace en una ventana nueva. 
+        // En iPhone, esto suele forzar el aviso de "¿Abrir en Uber?"
+        const nuevaVentana = window.open(uberURL, '_blank');
+        
+        // Si la ventana se bloquea, intentamos por la vía normal
+        if (!nuevaVentana || nuevaVentana.closed || typeof nuevaVentana.closed == 'undefined') {
+            window.location.href = uberURL;
+        }
     }
 
     function lanzarMaps() {
