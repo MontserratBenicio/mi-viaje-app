@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Viaje</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f0f0f2; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); width: 90%; max-width: 350px; text-align: center; }
+        h2 { margin-bottom: 5px; color: #1a1a1a; }
+        p { color: #666; margin-bottom: 25px; font-size: 14px; }
+        .btn { display: block; width: 100%; padding: 16px; margin: 12px 0; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; color: white; transition: transform 0.2s; }
+        .btn:active { transform: scale(0.98); }
+        .uber { background: black; }
+        .maps { background: #4285F4; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>¿A dónde vamos?</h2>
+    <p>Destino predefinido configurado</p>
+
+    <button onclick="abrirUber()" class="btn uber">Pedir Uber</button>
+    
+    <button onclick="abrirMaps()" class="btn maps">Ver en Google Maps</button>
+</div>
+
+<script>
+    // CAMBIA ESTO: Escribe tu dirección real aquí
+    const miDestino = "Palacio de Bellas Artes, CDMX"; 
+    const destinoEncoded = encodeURIComponent(miDestino);
+
+    function abrirUber() {
+        // Intentamos abrir la APP directamente (Deep Link)
+        const uberApp = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoEncoded}`;
+        const uberWeb = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoEncoded}`;
+        
+        // Redirigir
+        window.location.href = uberApp;
+
+        // Si no abre la app en 1 segundo, intenta la versión web
+        setTimeout(() => {
+            window.location.href = uberWeb;
+        }, 1000);
+    }
+
+    function abrirMaps() {
+        // Google Maps con punto de partida automático
+        const urlMaps = `https://www.google.com/maps/dir/?api=1&destination=${destinoEncoded}&travelmode=driving`;
+        window.open(urlMaps, '_blank');
+    }
+</script>
+
+</body>
+</html>
