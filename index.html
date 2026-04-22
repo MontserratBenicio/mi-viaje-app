@@ -99,15 +99,10 @@
         }, 1500);
     }
 
-    function lanzarDidi() {
-        const app = `diditaxi://?destination=${destinoURL}`;
-        
-        window.location.href = app;
-    
-        setTimeout(() => {
-            alert("Abre DiDi manualmente y pega la dirección");
-        }, 1500);
+    function abrirDidi() {
+        window.location.href = "diditaxi://";
     }
+    
     function lanzarGoogleMaps() {
         const url = `https://www.google.com/maps/dir/?api=1&destination=${destinoURL}&travelmode=driving`;
         window.open(url, '_blank');
