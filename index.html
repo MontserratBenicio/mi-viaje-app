@@ -100,15 +100,8 @@
     }
 
     function lanzarDidi() {
-        // Deep link aproximado (no oficial documentado públicamente)
-        const app = `diditaxi://?action=order&destination=${destinoURL}`;
-        const web = `https://www.didiglobal.com/`;
-
-        window.location.href = app;
-
-        setTimeout(() => {
-            window.location.href = web;
-        }, 1500);
+        const mapsURL = `https://www.google.com/maps/dir/?api=1&destination=${destinoURL}`;
+        window.open(mapsURL, '_blank');
     }
 
     function lanzarGoogleMaps() {
