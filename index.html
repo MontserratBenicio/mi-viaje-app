@@ -70,10 +70,6 @@
     <button onclick="lanzarUber()" class="btn uber">
         <span class="icon">🚗</span> Solicitar Uber
     </button>
-
-    <button onclick="lanzarDidi()" class="btn didi">
-        <span class="icon">🚕</span> Solicitar DiDi
-    </button>
     
     <button onclick="lanzarGoogleMaps()" class="btn maps">
         <span class="icon">📍</span> Ver en Google Maps
@@ -97,10 +93,6 @@
         setTimeout(() => {
             window.location.href = web;
         }, 1500);
-    }
-
-    function abrirDidi() {
-        window.location.href = "diditaxi://";
     }
     
     function lanzarGoogleMaps() {
