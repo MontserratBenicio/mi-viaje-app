@@ -1,140 +1,219 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soy de Cristo</title>
-    <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            
-            /* Ajustes para que sea responsivo */
-            background-image: url('vertical2.jpg'); 
-            background-size: cover;        /* Cubre toda la pantalla */
-            background-position: center;   /* Siempre centrada */
-            background-attachment: fixed;  /* El fondo no se mueve al scrollear */
-            background-repeat: no-repeat;
-            background-color: #000;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soy de Cristo</title>
 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; /* Usa min-height para mejor soporte en móvil */
-            margin: 0; 
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
 
-        /* Ajuste extra para PC (pantallas anchas) */
-        @media (min-width: 768px) {
-            body {
-                background-position: center 20%; /* Ajusta un poco el encuadre en monitores */
-            }
-        }
+/* FONDO GENERAL */
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .card { 
-            background: rgba(0, 0, 0, 0.75); 
-            backdrop-filter: blur(12px);    
-            -webkit-backdrop-filter: blur(12px);
-            padding: 30px; 
-            border-radius: 24px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6); 
-            width: 85%; 
-            max-width: 360px; 
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            margin: 20px; /* Margen para que no toque los bordes en móviles pequeños */
-        }
+/* 📱 FRAME DEL CELULAR */
+.phone {
+    width: 360px;
+    height: 720px;
+    background: #000;
+    border-radius: 40px;
+    padding: 10px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    position: relative;
+}
 
-        h2 { 
-            color: #ffffff; 
-            margin-bottom: 10px; 
-            font-size: 22px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.2;
-        }
+/* NOTCH */
+.phone::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 10;
+}
 
-        .address-box { 
-            background: rgba(255, 255, 255, 0.08); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 15px; 
-            border-radius: 12px; 
-            margin-bottom: 25px; 
-            font-size: 14px; 
-            color: #efefef; 
-            line-height: 1.5;
-        }
+/* PANTALLA */
+.screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    background-image: url('vertical2.jpg');
+    background-size: cover;
+    background-position: center;
+}
 
-        .btn { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 100%; 
-            padding: 16px; 
-            margin: 12px 0; 
-            border: none; 
-            border-radius: 14px; 
-            font-size: 16px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            text-decoration: none; 
-            color: white; 
-            transition: all 0.2s ease;
-        }
+/* OVERLAY */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+}
 
-        .btn:active { transform: scale(0.96); }
+/* CONTENIDO */
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 20px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-        .uber { background-color: #ffffff; color: #000; }
-        .maps { background-color: #ff3b30; } 
-        .apple { background-color: #444; }
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 24px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
 
-        .icon { margin-right: 12px; font-size: 20px; }
-    </style>
+/* TITULO */
+h2 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* DIRECCION */
+.address {
+    color: #ddd;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* BOTONES */
+.btn {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border-radius: 14px;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+/* COLORES MODERNOS */
+.uber {
+    background: #fff;
+    color: #000;
+}
+
+.maps {
+    background: linear-gradient(135deg, #ff3b30, #ff6a5e);
+    color: #fff;
+}
+
+.apple {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+/* RESPONSIVE (cuando sea celular real) */
+@media (max-width: 500px) {
+    body {
+        background: black;
+    }
+
+    .phone {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .screen {
+        border-radius: 0;
+    }
+
+    .phone::before {
+        display: none;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<div class="card">
-    <h2>Soy De Cristo En Movimiento</h2>
+<div class="phone">
+    <div class="screen">
 
-    <div class="address-box">
-        <strong style="color: #ff3b30;">Destino:</strong><br>
-        Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.
+        <div class="overlay"></div>
+
+        <div class="content">
+            <div class="card">
+                <h2>Soy De Cristo</h2>
+
+                <div class="address">
+                    Centro Cristiano Calacoaya <br>
+                    Cam. Real de Calacoaya 17
+                </div>
+
+                <button onclick="lanzarUber()" class="btn uber">
+                    🚗 Solicitar Uber
+                </button>
+
+                <button onclick="lanzarGoogleMaps()" class="btn maps">
+                    📍 Ver en Google Maps
+                </button>
+
+                <button onclick="lanzarAppleMaps()" class="btn apple">
+                    🍎 Apple Maps
+                </button>
+            </div>
+        </div>
+
     </div>
-
-    <button onclick="lanzarUber()" class="btn uber">
-        <span class="icon">🚗</span> Solicitar Uber
-    </button>
-    
-    <button onclick="lanzarGoogleMaps()" class="btn maps">
-        <span class="icon">📍</span> Ver en Google Maps
-    </button>
-
-    <button onclick="lanzarAppleMaps()" class="btn apple">
-        <span class="icon">🍎</span> Ver en Apple Maps
-    </button>
 </div>
 
 <script>
-    const direccionDestino = "Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.";
-    const destinoURL = encodeURIComponent(direccionDestino);
+const direccionDestino = "Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, Estado de México";
+const destinoURL = encodeURIComponent(direccionDestino);
 
-    function lanzarUber() {
-        const app = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
-        const web = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
+function lanzarUber() {
+    const app = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
+    const web = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
 
-        window.location.href = app;
-        setTimeout(() => { window.location.href = web; }, 1500);
-    }
-    
-    function lanzarGoogleMaps() {
-        const url = `https://www.google.com/maps/dir/?api=1&destination=${destinoURL}&travelmode=driving`;
-        window.open(url, '_blank');
-    }
+    window.location.href = app;
+    setTimeout(() => window.location.href = web, 1500);
+}
 
-    function lanzarAppleMaps() {
-        const url = `http://maps.apple.com/?daddr=${destinoURL}&dirflg=d`;
-        window.open(url, '_blank');
-    }
+function lanzarGoogleMaps() {
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${destinoURL}`, '_blank');
+}
+
+function lanzarAppleMaps() {
+    window.open(`http://maps.apple.com/?daddr=${destinoURL}`, '_blank');
+}
 </script>
 
 </body>
