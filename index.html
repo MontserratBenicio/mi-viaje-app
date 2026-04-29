@@ -1,219 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soy de Cristo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Soy de Cristo App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Evita el rebote de scroll en apps móviles */
+            background-color: #000;
+        }
 
-/* FONDO GENERAL */
-body {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* El truco: containment y position */
+            background-image: url('vertical2.jpg'); 
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            /* Evita distorsión en pantallas muy anchas */
+            image-rendering: -webkit-optimize-contrast;
+        }
 
-/* 📱 FRAME DEL CELULAR */
-.phone {
-    width: 360px;
-    height: 720px;
-    background: #000;
-    border-radius: 40px;
-    padding: 10px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-    position: relative;
-}
+        /* Capa de oscurecimiento para mejorar contraste */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+            z-index: 0;
+        }
 
-/* NOTCH */
-.phone::before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 25px;
-    background: #000;
-    border-radius: 20px;
-    z-index: 10;
-}
+        .app-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
 
-/* PANTALLA */
-.screen {
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    overflow: hidden;
-    position: relative;
-    background-image: url('vertical2.jpg');
-    background-size: cover;
-    background-position: center;
-}
+        .card { 
+            background: rgba(15, 15, 15, 0.6); /* Más transparente tipo "Glassmorphism" */
+            backdrop-filter: blur(20px);    
+            -webkit-backdrop-filter: blur(20px);
+            padding: 35px 25px; 
+            border-radius: 30px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5); 
+            width: 100%; 
+            max-width: 350px; 
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-/* OVERLAY */
-.overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-}
+        h2 { 
+            color: #ffffff; 
+            margin-bottom: 8px; 
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-/* CONTENIDO */
-.content {
-    position: relative;
-    z-index: 2;
-    padding: 60px 20px 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        .address-box { 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 15px; 
+            border-radius: 15px; 
+            margin-bottom: 30px; 
+            font-size: 13px; 
+            color: #ccc; 
+            border: 1px solid rgba(255,255,255,0.05);
+        }
 
-/* CARD */
-.card {
-    background: rgba(255,255,255,0.08);
-    border-radius: 24px;
-    padding: 24px;
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
-}
+        .btn { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            padding: 18px; 
+            margin: 12px 0; 
+            border: none; 
+            border-radius: 16px; 
+            font-size: 15px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            text-decoration: none; 
+            color: white; 
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-/* TITULO */
-h2 {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 15px;
-}
+        .btn:active { transform: scale(0.94); }
 
-/* DIRECCION */
-.address {
-    color: #ddd;
-    font-size: 13px;
-    text-align: center;
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
+        .uber { background-color: #fff; color: #000; }
+        .maps { background-color: #e63946; } /* Un rojo más vibrante */
+        .apple { background-color: #333; }
 
-/* BOTONES */
-.btn {
-    width: 100%;
-    padding: 14px;
-    margin: 8px 0;
-    border-radius: 14px;
-    border: none;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all .2s ease;
-}
-
-.btn:active {
-    transform: scale(0.96);
-}
-
-/* COLORES MODERNOS */
-.uber {
-    background: #fff;
-    color: #000;
-}
-
-.maps {
-    background: linear-gradient(135deg, #ff3b30, #ff6a5e);
-    color: #fff;
-}
-
-.apple {
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-}
-
-/* RESPONSIVE (cuando sea celular real) */
-@media (max-width: 500px) {
-    body {
-        background: black;
-    }
-
-    .phone {
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
-        padding: 0;
-    }
-
-    .screen {
-        border-radius: 0;
-    }
-
-    .phone::before {
-        display: none;
-    }
-}
-</style>
+        .icon { margin-right: 12px; font-size: 22px; }
+    </style>
 </head>
-
 <body>
 
-<div class="phone">
-    <div class="screen">
+<div class="bg-container"></div>
+<div class="overlay"></div>
 
-        <div class="overlay"></div>
+<div class="app-container">
+    <div class="card">
+        <h2>¿LISTOS PARA EL VIAJE?</h2>
+        <p style="color: #888; font-size: 12px; margin-top: -5px; margin-bottom: 20px;">DIRECCIÓN DEL EVENTO</p>
 
-        <div class="content">
-            <div class="card">
-                <h2>Soy De Cristo</h2>
-
-                <div class="address">
-                    Centro Cristiano Calacoaya <br>
-                    Cam. Real de Calacoaya 17
-                </div>
-
-                <button onclick="lanzarUber()" class="btn uber">
-                    🚗 Solicitar Uber
-                </button>
-
-                <button onclick="lanzarGoogleMaps()" class="btn maps">
-                    📍 Ver en Google Maps
-                </button>
-
-                <button onclick="lanzarAppleMaps()" class="btn apple">
-                    🍎 Apple Maps
-                </button>
-            </div>
+        <div class="address-box">
+            Centro Cristiano Calacoaya<br>
+            <span style="font-size: 11px; opacity: 0.7;">Edo. de México, Calacoaya.</span>
         </div>
 
+        <button onclick="lanzarUber()" class="btn uber">
+            <span class="icon">🚗</span> Solicitar Uber
+        </button>
+        
+        <button onclick="lanzarGoogleMaps()" class="btn maps">
+            <span class="icon">📍</span> Google Maps
+        </button>
+
+        <button onclick="lanzarAppleMaps()" class="btn apple">
+            <span class="icon">🍎</span> Apple Maps
+        </button>
     </div>
 </div>
 
 <script>
-const direccionDestino = "Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, Estado de México";
-const destinoURL = encodeURIComponent(direccionDestino);
+    const destinoURL = encodeURIComponent("Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.");
 
-function lanzarUber() {
-    const app = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
-    const web = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
+    function lanzarUber() {
+        const app = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
+        const web = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
+        window.location.href = app;
+        setTimeout(() => { window.location.href = web; }, 1500);
+    }
+    
+    function lanzarGoogleMaps() {
+        // Formato oficial de Google Maps para apps
+        const url = `https://www.google.com/maps/search/?api=1&query=${destinoURL}`;
+        window.open(url, '_blank');
+    }
 
-    window.location.href = app;
-    setTimeout(() => window.location.href = web, 1500);
-}
-
-function lanzarGoogleMaps() {
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${destinoURL}`, '_blank');
-}
-
-function lanzarAppleMaps() {
-    window.open(`http://maps.apple.com/?daddr=${destinoURL}`, '_blank');
-}
+    function lanzarAppleMaps() {
+        const url = `http://maps.apple.com/?daddr=${destinoURL}&dirflg=d`;
+        window.open(url, '_blank');
+    }
 </script>
 
 </body>
