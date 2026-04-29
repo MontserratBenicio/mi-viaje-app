@@ -2,90 +2,60 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Soy de Cristo App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Transporte</title>
     <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body, html {
+        /* ESTO EVITA QUE LA IMAGEN SE DISTORSIONE */
+        html, body {
             margin: 0;
             padding: 0;
-            width: 100%;
             height: 100%;
-            overflow: hidden; /* Evita el rebote de scroll en apps móviles */
-            background-color: #000;
+            width: 100%;
+            overflow: hidden; /* Evita scrolls raros en móviles */
         }
 
-        .bg-container {
+        .fondo {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            /* El truco: containment y position */
-            background-image: url('vertical2.jpg'); 
-            background-size: cover;
-            background-position: center center;
+            background-image: url('vertical2.jpg');
+            background-size: cover;    /* Cubre todo sin deformar */
+            background-position: center; /* Centra la imagen */
             background-repeat: no-repeat;
-            /* Evita distorsión en pantallas muy anchas */
-            image-rendering: -webkit-optimize-contrast;
+            z-index: -1; /* Lo manda al fondo */
         }
 
-        /* Capa de oscurecimiento para mejorar contraste */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
-            z-index: 0;
-        }
-
-        .app-container {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding: 20px;
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
         }
 
         .card { 
-            background: rgba(15, 15, 15, 0.6); /* Más transparente tipo "Glassmorphism" */
-            backdrop-filter: blur(20px);    
-            -webkit-backdrop-filter: blur(20px);
-            padding: 35px 25px; 
-            border-radius: 30px; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5); 
-            width: 100%; 
-            max-width: 350px; 
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+            width: 90%; 
+            max-width: 380px; 
+            text-align: center; 
         }
 
-        h2 { 
-            color: #ffffff; 
-            margin-bottom: 8px; 
-            font-size: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        h2 { color: #1a1a1a; margin-bottom: 10px; font-size: 22px; }
 
         .address-box { 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 15px; 
-            border-radius: 15px; 
-            margin-bottom: 30px; 
-            font-size: 13px; 
-            color: #ccc; 
-            border: 1px solid rgba(255,255,255,0.05);
+            background: #f8f9fa; 
+            border: 1px solid #e9ecef; 
+            padding: 12px; 
+            border-radius: 12px; 
+            margin-bottom: 25px; 
+            font-size: 14px; 
+            color: #495057; 
+            line-height: 1.4;
+            text-align: center;
         }
 
         .btn { 
@@ -94,57 +64,51 @@
             justify-content: center; 
             width: 100%; 
             padding: 18px; 
-            margin: 12px 0; 
+            margin: 10px 0; 
             border: none; 
-            border-radius: 16px; 
-            font-size: 15px; 
+            border-radius: 12px; 
+            font-size: 16px; 
             font-weight: 700; 
             cursor: pointer; 
             text-decoration: none; 
             color: white; 
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.1s ease;
         }
 
-        .btn:active { transform: scale(0.94); }
-
-        .uber { background-color: #fff; color: #000; }
-        .maps { background-color: #e63946; } /* Un rojo más vibrante */
-        .apple { background-color: #333; }
-
-        .icon { margin-right: 12px; font-size: 22px; }
+        .btn:active { transform: scale(0.96); }
+        .uber { background-color: #000000; }
+        .maps { background-color: #4285F4; }
+        .apple { background-color: #555555; }
+        .icon { margin-right: 10px; font-size: 18px; }
     </style>
 </head>
 <body>
 
-<div class="bg-container"></div>
-<div class="overlay"></div>
+<div class="fondo"></div>
 
-<div class="app-container">
-    <div class="card">
-        <h2>¿LISTOS PARA EL VIAJE?</h2>
-        <p style="color: #888; font-size: 12px; margin-top: -5px; margin-bottom: 20px;">DIRECCIÓN DEL EVENTO</p>
-
-        <div class="address-box">
-            Centro Cristiano Calacoaya<br>
-            <span style="font-size: 11px; opacity: 0.7;">Edo. de México, Calacoaya.</span>
-        </div>
-
-        <button onclick="lanzarUber()" class="btn uber">
-            <span class="icon">🚗</span> Solicitar Uber
-        </button>
-        
-        <button onclick="lanzarGoogleMaps()" class="btn maps">
-            <span class="icon">📍</span> Google Maps
-        </button>
-
-        <button onclick="lanzarAppleMaps()" class="btn apple">
-            <span class="icon">🍎</span> Apple Maps
-        </button>
+<div class="card">
+    <h2>¿A dónde vamos?</h2>
+    <div class="address-box">
+        <strong>Destino:</strong><br>
+        Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.
     </div>
+
+    <button onclick="lanzarUber()" class="btn uber">
+        <span class="icon">🚗</span> Solicitar Uber
+    </button>
+    
+    <button onclick="lanzarGoogleMaps()" class="btn maps">
+        <span class="icon">📍</span> Ver en Google Maps
+    </button>
+
+    <button onclick="lanzarAppleMaps()" class="btn apple">
+        <span class="icon">🍎</span> Ver en Apple Maps
+    </button>
 </div>
 
 <script>
-    const destinoURL = encodeURIComponent("Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.");
+    const direccionDestino = "Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.";
+    const destinoURL = encodeURIComponent(direccionDestino);
 
     function lanzarUber() {
         const app = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
@@ -154,8 +118,7 @@
     }
     
     function lanzarGoogleMaps() {
-        // Formato oficial de Google Maps para apps
-        const url = `https://www.google.com/maps/search/?api=1&query=${destinoURL}`;
+        const url = `https://www.google.com/maps/dir/?api=1&destination=${destinoURL}&travelmode=driving`;
         window.open(url, '_blank');
     }
 
