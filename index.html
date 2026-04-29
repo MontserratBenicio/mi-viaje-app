@@ -3,59 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Transporte</title>
+    <title>Mi Transporte - Soy de Cristo</title>
     <style>
-        /* ESTO EVITA QUE LA IMAGEN SE DISTORSIONE */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* Evita scrolls raros en móviles */
-        }
-
-        .fondo {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('vertical2.jpg');
-            background-size: cover;    /* Cubre todo sin deformar */
-            background-position: center; /* Centra la imagen */
-            background-repeat: no-repeat;
-            z-index: -1; /* Lo manda al fondo */
-        }
-
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            
+            /* Configuración de la imagen de fondo */
+            background-image: url('vertical2.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000; /* Fondo negro de respaldo */
+
             display: flex; 
             justify-content: center; 
             align-items: center; 
+            height: 100vh; 
+            margin: 0; 
         }
 
         .card { 
-            background: white; 
+            background: rgba(0, 0, 0, 0.75); /* Fondo oscuro translúcido */
+            backdrop-filter: blur(10px);    /* Efecto de desenfoque cristalino */
+            -webkit-backdrop-filter: blur(10px);
             padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
-            width: 90%; 
-            max-width: 380px; 
-            text-align: center; 
+            border-radius: 24px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+            width: 85%; 
+            max-width: 360px; 
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
         }
 
-        h2 { color: #1a1a1a; margin-bottom: 10px; font-size: 22px; }
+        h2 { 
+            color: #ffffff; 
+            margin-bottom: 10px; 
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         .address-box { 
-            background: #f8f9fa; 
-            border: 1px solid #e9ecef; 
-            padding: 12px; 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 15px; 
             border-radius: 12px; 
             margin-bottom: 25px; 
             font-size: 14px; 
-            color: #495057; 
-            line-height: 1.4;
-            text-align: center;
+            color: #e0e0e0; 
+            line-height: 1.5;
         }
 
         .btn { 
@@ -63,33 +61,34 @@
             align-items: center; 
             justify-content: center; 
             width: 100%; 
-            padding: 18px; 
-            margin: 10px 0; 
+            padding: 16px; 
+            margin: 12px 0; 
             border: none; 
-            border-radius: 12px; 
+            border-radius: 14px; 
             font-size: 16px; 
             font-weight: 700; 
             cursor: pointer; 
             text-decoration: none; 
             color: white; 
-            transition: transform 0.1s ease;
+            transition: all 0.2s ease;
         }
 
-        .btn:active { transform: scale(0.96); }
-        .uber { background-color: #000000; }
-        .maps { background-color: #4285F4; }
-        .apple { background-color: #555555; }
-        .icon { margin-right: 10px; font-size: 18px; }
+        .btn:active { transform: scale(0.97); }
+
+        /* Colores inspirados en la marca y apps */
+        .uber { background-color: #ffffff; color: #000; }
+        .maps { background-color: #ff3b30; } /* Rojo para combinar con tu imagen */
+        .apple { background-color: #444; }
+
+        .icon { margin-right: 12px; font-size: 20px; }
     </style>
 </head>
 <body>
 
-<div class="fondo"></div>
-
 <div class="card">
-    <h2>¿A dónde vamos?</h2>
+    <h2>Soy De Cristo En Movimiento</h2>
     <div class="address-box">
-        <strong>Destino:</strong><br>
+        <strong style="color: #ff3b30;">Destino:</strong><br>
         Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.
     </div>
 
@@ -113,6 +112,7 @@
     function lanzarUber() {
         const app = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
         const web = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
+
         window.location.href = app;
         setTimeout(() => { window.location.href = web; }, 1500);
     }
