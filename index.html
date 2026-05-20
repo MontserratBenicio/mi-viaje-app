@@ -3,19 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Transporte - Soy de Cristo</title>
+    <title>Redes Sociales</title>
+
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            
-            /* Configuración de la imagen de fondo */
-            background-image: url('vertical2.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-color: #000; /* Fondo negro de respaldo */
-
+            background: linear-gradient(135deg, #d9e9ff, #f5f9ff);
             display: flex; 
             justify-content: center; 
             align-items: center; 
@@ -24,36 +17,26 @@
         }
 
         .card { 
-            background: rgba(0, 0, 0, 0.75); /* Fondo oscuro translúcido */
-            backdrop-filter: blur(10px);    /* Efecto de desenfoque cristalino */
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
             padding: 30px; 
-            border-radius: 24px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
-            width: 85%; 
-            max-width: 360px; 
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+            border-radius: 22px; 
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12); 
+            width: 90%; 
+            max-width: 380px; 
+            text-align: center; 
+            backdrop-filter: blur(10px);
         }
 
         h2 { 
-            color: #ffffff; 
-            margin-bottom: 10px; 
-            font-size: 24px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #1e4f9a; 
+            margin-bottom: 8px; 
+            font-size: 22px; 
         }
 
-        .address-box { 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 15px; 
-            border-radius: 12px; 
-            margin-bottom: 25px; 
-            font-size: 14px; 
-            color: #e0e0e0; 
-            line-height: 1.5;
+        p {
+            color: #6b7a90;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         .btn { 
@@ -61,71 +44,157 @@
             align-items: center; 
             justify-content: center; 
             width: 100%; 
-            padding: 16px; 
-            margin: 12px 0; 
-            border: none; 
-            border-radius: 14px; 
-            font-size: 16px; 
-            font-weight: 700; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 12px; 
+            font-size: 15px; 
+            font-weight: 600; 
             cursor: pointer; 
-            text-decoration: none; 
-            color: white; 
             transition: all 0.2s ease;
+            background: white;
+            border: 2px solid #1e5aa8;
+            color: #1e5aa8;
+            text-decoration: none;
         }
 
-        .btn:active { transform: scale(0.97); }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
 
-        /* Colores inspirados en la marca y apps */
-        .uber { background-color: #ffffff; color: #000; }
-        .maps { background-color: #ff3b30; } /* Rojo para combinar con tu imagen */
-        .apple { background-color: #444; }
+        .btn:active {
+            transform: scale(0.97);
+        }
 
-        .icon { margin-right: 12px; font-size: 20px; }
+        .icon-img {
+            width: 22px;
+            height: 22px;
+            margin-right: 12px;
+        }
+
+        .facebook {
+            border-color: #1877F2;
+            color: #1877F2;
+        }
+
+        .facebook:hover {
+            background: #1877F2;
+            color: white;
+        }
+
+        .instagram {
+            border-color: #C13584;
+            color: #C13584;
+        }
+
+        .instagram:hover {
+            background: linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4);
+            color: white;
+            border: none;
+        }
+
+        .spotify {
+            border-color: #1DB954;
+            color: #1DB954;
+        }
+
+        .spotify:hover {
+            background: #1DB954;
+            color: white;
+        }
+
+        .maps {
+            border-color: #34A853;
+            color: #34A853;
+        }
+
+        .maps:hover {
+            background: #34A853;
+            color: white;
+        }
+
+        .uber {
+            border-color: #000;
+            color: #000;
+        }
+
+        .uber:hover {
+            background: #000;
+            color: white;
+        }
+
     </style>
 </head>
+
 <body>
 
 <div class="card">
-    <h2>Soy De Cristo En Movimiento</h2>
-    <div class="address-box">
-        <strong style="color: #ff3b30;">Destino:</strong><br>
-        Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.
-    </div>
+    <h2>Iglesia de Cristo Príncipe de Paz Ebenezer</h2>
+    <p>Síguenos en nuestras redes sociales</p>
 
-    <button onclick="lanzarUber()" class="btn uber">
-        <span class="icon">🚗</span> Solicitar Uber
-    </button>
-    
-    <button onclick="lanzarGoogleMaps()" class="btn maps">
-        <span class="icon">📍</span> Ver en Google Maps
+    <button onclick="abrirFacebook()" class="btn facebook">
+        <img class="icon-img" src="https://cdn-icons-png.flaticon.com/512/124/124010.png">
+        Facebook
     </button>
 
-    <button onclick="lanzarAppleMaps()" class="btn apple">
-        <span class="icon">🍎</span> Ver en Apple Maps
+    <button onclick="abrirInstagram()" class="btn instagram">
+        <img class="icon-img" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+        Instagram
     </button>
+
+    <button onclick="abrirSpotify()" class="btn spotify">
+        <img class="icon-img" src="https://cdn-icons-png.flaticon.com/512/174/174872.png">
+        Spotify
+    </button>
+
+    <button onclick="abrirMaps()" class="btn maps">
+        <img class="icon-img" src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png">
+        Cómo llegar
+    </button>
+
+    <button onclick="abrirUber()" class="btn uber">
+        <img class="icon-img" src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png">
+        Pedir Uber
+    </button>
+
 </div>
 
 <script>
-    const direccionDestino = "Centro Cristiano Calacoaya, Cam. Real de Calacoaya 17, Calacoaya, 52985 Cdad. López Mateos, Méx.";
-    const destinoURL = encodeURIComponent(direccionDestino);
 
-    function lanzarUber() {
-        const app = `uber://?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
-        const web = `https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=${destinoURL}`;
+    const direccion = "Calle Ote. 36 Manzana 046, Unión de Guadalupe, 56605 Chalco de Díaz Covarrubias, Méx.";
 
-        window.location.href = app;
-        setTimeout(() => { window.location.href = web; }, 1500);
+    function abrirFacebook() {
+        const facebookURL = "https://www.facebook.com/share/18ktMoP6Jc/";
+        window.location.href = "fb://facewebmodal/f?href=" + facebookURL;
+
+        setTimeout(() => {
+            window.open(facebookURL, '_blank');
+        }, 1200);
     }
-    
-    function lanzarGoogleMaps() {
-        const url = `https://www.google.com/maps/dir/?api=1&destination=${destinoURL}&travelmode=driving`;
+
+    function abrirInstagram() {
+        const instagramURL = "https://www.instagram.com/ebenezer_chalco?igsh=MXBneWdua3ZheXduYg==";
+        window.location.href = "instagram://app";
+
+        setTimeout(() => {
+            window.open(instagramURL, '_blank');
+        }, 1200);
+    }
+
+    function abrirSpotify() {
+        const url = "https://open.spotify.com/episode/2E0mOvu2bqqvFAVLIU0AHj?si=BzwD8RtoRb2KgsCn-JtLZA";
         window.open(url, '_blank');
     }
 
-    function lanzarAppleMaps() {
-        const url = `http://maps.apple.com/?daddr=${destinoURL}&dirflg=d`;
-        window.open(url, '_blank');
+    function abrirMaps() {
+        const mapsURL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(direccion);
+        window.open(mapsURL, '_blank');
     }
+
+    function abrirUber() {
+        const uberURL = "https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=" + encodeURIComponent(direccion);
+        window.open(uberURL, '_blank');
+    }
+
 </script>
 
 </body>
